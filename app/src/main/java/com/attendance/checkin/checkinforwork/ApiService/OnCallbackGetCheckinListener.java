@@ -1,0 +1,20 @@
+package com.attendance.checkin.checkinforwork.ApiService;
+
+import com.attendance.checkin.checkinforwork.Models.GetCheckinModel;
+import com.attendance.checkin.checkinforwork.Models.GetLeaveModel;
+
+import java.util.List;
+
+import okhttp3.ResponseBody;
+
+public interface OnCallbackGetCheckinListener {
+
+    public void onResponse(List<GetCheckinModel> getCheckinList);
+
+    public void onBodyError(ResponseBody responseBodyError);
+
+    public void onBodyErrorIsNull();
+
+    public void onFailure(Throwable t);
+
+}

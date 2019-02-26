@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/bg"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/bg"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:text="@string/btn_header_history_"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/btn_start_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/bg_style_body_history_leave"
+        android:orientation="vertical">
+        <LinearLayout
+            android:gravity="center"
+            android:layout_marginBottom="2dp"
+            android:background="#8afa6c06"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="วัน/เดือน/ปี"
+                android:layout_marginLeft="10dp"
+                android:textStyle="bold"
+                android:textSize="10sp"
+                android:textAlignment="center"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:text="เข้างาน"
+                android:layout_marginLeft="15dp"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="ออกงาน"
+                android:layout_marginLeft="20dp"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycleview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textStyle="bold"
+            android:textColor="#FFF"
+            android:text="@string/tv_lbl_serch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+
+            android:id="@+id/et_month"
+            android:layout_marginLeft="5dp"
+            android:clickable="true"
+            android:editable="false"
+            android:paddingLeft="10dp"
+            android:textSize="10sp"
+            android:hint="@string/et_month"
+            android:background="#FFF"
+            android:layout_width="200dp"
+            android:layout_height="30dp" />
+
+        <Button
+            android:id="@+id/btn_find_history"
+            android:drawableLeft="@drawable/ic_search"
+            android:background="@drawable/btn_cricle"
+            android:layout_marginLeft="10dp"
+            android:paddingLeft="10dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
+    </LinearLayout>
+    <TextView
+        android:text="@string/tv_lbl_desc"
+        android:textAlignment="center"
+        android:textColor="@color/color_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+
+        android:id="@+id/btn_cancel"
+        android:textColor="@color/color_text"
+        android:backgroundTint="@color/bootstrap_brand_success"
+        android:text="@string/btn_back"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"/>
+
+
+</LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_not_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="192dp"
+        android:textSize="20dp"
+
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/tv_not_data"
+        android:textColor="@color/bootstrap_brand_danger"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

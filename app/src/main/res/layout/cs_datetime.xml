@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/bg"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:background="@drawable/style_background_popup"
+        android:layout_width="300dp"
+        android:layout_height="280dp">
+    <LinearLayout
+        android:gravity="right"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/image_close"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/ic_close"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_marginTop="50dp"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        android:text="วัน / เดือน / ปี"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_marginTop="10dp"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        android:text="19:33:99"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btn_save"
+        android:backgroundTint="@color/bootstrap_brand_success"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#FFF"
+        android:text="@string/btn_save"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>

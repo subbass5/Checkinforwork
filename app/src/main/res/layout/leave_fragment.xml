@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:id="@+id/mainlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/style_background_round"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="18dp">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="300dp">
+
+            <TextView
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:paddingLeft="20dp"
+                android:text="@string/tv_type_leave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <RadioGroup
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <RadioButton
+                    android:id="@+id/rad_ch1"
+                    android:textSize="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/rad_ch2" />
+
+                <RadioButton
+                    android:id="@+id/rad_ch2"
+                    android:textSize="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/rad_ch3" />
+
+                <!--<LinearLayout-->
+                    <!---->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content">-->
+                    <!--<TextView-->
+                        <!--android:textSize="20sp"-->
+                        <!--android:text="@string/tv_description"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content" />-->
+                    <!--<EditText-->
+                        <!--android:background="@color/color_text"-->
+                        <!--android:hint="@string/et_description_leave"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="70dp" />-->
+
+                <!--</LinearLayout>-->
+
+            </RadioGroup>
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/img_leave"
+                    android:src="@drawable/ic_image_black_24dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp" />
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:id="@+id/btn_select_img"
+                        android:backgroundTint="@color/bootstrap_brand_info"
+                        android:textColor="#FFF"
+                        android:text="@string/btn_add_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <Button
+                        android:id="@+id/btn_take_photo"
+                        android:backgroundTint="@color/bootstrap_brand_info"
+                        android:textColor="#FFF"
+                        android:visibility="gone"
+                        android:layout_marginLeft="10dp"
+                        android:text="@string/btn_takephoto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:text="@string/tv_date_start"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textEnd"
+                    android:paddingRight="10dp"/>
+                <EditText
+                    android:id="@+id/et_date_start"
+                    android:clickable="true"
+                    android:editable="false"
+                    android:paddingLeft="10dp"
+                    android:textSize="12sp"
+                    android:hint="@string/et_date_start"
+                    android:background="#FFF"
+                    android:drawableRight="@drawable/ic_timer_black_24dp"
+                    android:paddingRight="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:text="@string/tv_date_end"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textEnd"
+                    android:paddingRight="10dp"/>
+                <EditText
+                    android:id="@+id/et_date_end"
+                    android:background="#FFF"
+                    android:clickable="true"
+                    android:editable="false"
+                    android:hint="@string/et_date_end"
+                    android:textSize="12sp"
+                    android:drawableRight="@drawable/ic_timer_off_black_24dp"
+                    android:paddingRight="5dp"
+                    android:paddingLeft="10sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:text="@string/tv_date_sum"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textEnd"
+                    android:paddingRight="10dp"/>
+
+                <TextView
+                    android:id="@+id/tv_date_sum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10sp"
+                    android:text="วัน"
+                    android:textColor="@color/color_text"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:text="@string/tv_numleave"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textEnd"
+                    android:paddingRight="10dp"/>
+
+                <TextView
+                    android:id="@+id/tv_numLeave"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10sp"
+                    android:text="วัน"
+                    android:textColor="@color/color_text"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+              <Button
+                  android:id="@+id/btn_submit"
+                  android:textAlignment="center"
+                  android:textColor="@color/color_text"
+                  android:backgroundTint="@color/bootstrap_brand_success"
+                  android:textSize="18sp"
+                  android:text="@string/btn_submit"
+                  android:layout_width="120dp"
+                  android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/btn_cancel"
+                    android:textAlignment="center"
+                    android:textColor="@color/color_text"
+                    android:backgroundTint="@color/bootstrap_brand_danger"
+                    android:textSize="18sp"
+                    android:text="@string/btn_cancel"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+        </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginBottom="5dp"
+    android:layout_width="match_parent"
+    android:layout_height="50dp">
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tv_date"
+            android:text="วัน/เดือน/ปี"
+            android:textSize="10sp"
+
+            android:textAlignment="center"
+            android:layout_width="145dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_checkin"
+            android:text="เข้างาน"
+            android:textSize="10sp"
+            android:layout_marginLeft="5dp"
+            android:textAlignment="center"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_checkout"
+            android:text="ออกงาน"
+            android:layout_marginLeft="25dp"
+            android:textSize="10sp"
+            android:textAlignment="center"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
