@@ -17,7 +17,7 @@
         android:layout_height="match_parent">
         <TextView
             android:layout_marginTop="20dp"
-            android:textSize="40sp"
+            android:textSize="20sp"
             android:textAlignment="center"
             android:textColor="#FFF"
             android:text="@string/input_pin"
@@ -53,20 +53,20 @@
                 <ImageButton
                     android:id="@+id/img1"
                     android:background="@drawable/number1"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
                 <ImageButton
                     android:id="@+id/img2"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/number2"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
                 <ImageButton
                     android:id="@+id/img3"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/number3"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
 
             </LinearLayout>
             <LinearLayout
@@ -77,20 +77,20 @@
                 <ImageButton
                     android:id="@+id/img4"
                     android:background="@drawable/number4"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
                 <ImageButton
                     android:id="@+id/img5"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/number5"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
                 <ImageButton
                     android:id="@+id/img6"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/number6"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
 
             </LinearLayout>
             <LinearLayout
@@ -101,20 +101,20 @@
                 <ImageButton
                     android:id="@+id/img7"
                     android:background="@drawable/number7"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
                 <ImageButton
                     android:id="@+id/img8"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/number8"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
                 <ImageButton
                     android:id="@+id/img9"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/number9"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
 
             </LinearLayout>
             <LinearLayout
@@ -128,14 +128,14 @@
                     android:id="@+id/img0"
                     android:background="@drawable/number0"
                     android:layout_marginLeft="30dp"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
                 <ImageButton
                     android:id="@+id/imgdel"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/delete"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
 
             </LinearLayout>
             <Button

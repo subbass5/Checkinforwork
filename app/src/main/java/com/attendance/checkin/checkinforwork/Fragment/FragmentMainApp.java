@@ -29,7 +29,9 @@ import android.widget.Toast;
 
 import com.attendance.checkin.checkinforwork.ApiService.NetworkConnection;
 import com.attendance.checkin.checkinforwork.ApiService.OnCallbackSaveProfileListerner;
+import com.attendance.checkin.checkinforwork.ApiService.OnCallbackauthPinListenner;
 import com.attendance.checkin.checkinforwork.AuthenActivity;
+import com.attendance.checkin.checkinforwork.Models.AuthPinModel;
 import com.attendance.checkin.checkinforwork.Models.SaveProfileModel;
 import com.attendance.checkin.checkinforwork.R;
 import com.attendance.checkin.checkinforwork.Util.MyFer;
@@ -63,6 +65,7 @@ public class FragmentMainApp extends Fragment implements View.OnClickListener{
     private String password;
     private String pin = "";
     private String tmp = "";
+    private Dialog dialogPin;
 
     @Nullable
     @Override
@@ -186,8 +189,9 @@ public class FragmentMainApp extends Fragment implements View.OnClickListener{
         });
 
     }
-    private void showProgress(){
 
+    private void showProgress(){
+        pin = "";
         progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("กำลังโหลดข้อมูล");
         progressDialog.show();
@@ -218,7 +222,7 @@ public class FragmentMainApp extends Fragment implements View.OnClickListener{
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context,android.R.style.Theme_Black_NoTitleBar_Fullscreen);
         builder.setView(v);
-        final Dialog dialog =  builder.show();
+         dialogPin =  builder.show();
 
         img0.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -310,7 +314,7 @@ public class FragmentMainApp extends Fragment implements View.OnClickListener{
                     pin = pin.substring(0, pin.length()-1);
                     tv_show.setText(pin);
                 }catch (Exception e){
-                    Toast.makeText(context, "กรุณากรอกข้อมูล", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "กรุณากรอกข้อมูลก่อนลบ", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -319,13 +323,15 @@ public class FragmentMainApp extends Fragment implements View.OnClickListener{
         btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "กำลังทำ//////", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "pin = "+pin, Toast.LENGTH_SHORT).show();
+                showProgress();
+                new NetworkConnection().callAuthPin(onCallbackauthPinListenner,pin);
             }
         });
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialog.dismiss();
+                dialogPin.dismiss();
             }
         });
 
@@ -486,6 +492,52 @@ public class FragmentMainApp extends Fragment implements View.OnClickListener{
                 progressDialog.dismiss();
             }
             Log.e(TAG,"data is null.");
+        }
+
+        @Override
+        public void onFailure(Throwable t) {
+            if(progressDialog.isShowing()){
+                progressDialog.dismiss();
+            }
+            t.printStackTrace();
+        }
+    };
+
+
+    OnCallbackauthPinListenner onCallbackauthPinListenner = new OnCallbackauthPinListenner() {
+        @Override
+        public void onResponse(AuthPinModel authPinModel) {
+            if(progressDialog.isShowing()){
+                progressDialog.dismiss();
+            }
+            if (authPinModel.getState().equals("success")){
+
+                Toast.makeText(context, "ยืนยันตัวตนสำเร็จ", Toast.LENGTH_SHORT).show();
+                fragmentTran(new FragmentSchedule());
+                dialogPin.dismiss();
+                pin = "";
+
+            }else {
+                pin = "";
+                Toast.makeText(context, "กรุณาลองใหม่อีกครั้ง", Toast.LENGTH_SHORT).show();
+//                dialogPin.dismiss();
+            }
+        }
+
+        @Override
+        public void onBodyError(ResponseBody responseBodyError) {
+            if(progressDialog.isShowing()){
+                progressDialog.dismiss();
+            }
+            Log.e(TAG,""+responseBodyError.source());
+        }
+
+        @Override
+        public void onBodyErrorIsNull() {
+            if(progressDialog.isShowing()){
+                progressDialog.dismiss();
+            }
+            Log.e(TAG,"response is null");
         }
 
         @Override

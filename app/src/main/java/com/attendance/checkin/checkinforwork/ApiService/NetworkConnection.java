@@ -2,6 +2,7 @@ package com.attendance.checkin.checkinforwork.ApiService;
 
 import android.util.Log;
 
+import com.attendance.checkin.checkinforwork.Models.AuthPinModel;
 import com.attendance.checkin.checkinforwork.Models.CheckinModel;
 import com.attendance.checkin.checkinforwork.Models.GetCheckinModel;
 import com.attendance.checkin.checkinforwork.Models.GetLeaveModel;
@@ -448,6 +449,58 @@ public class NetworkConnection {
             }
             @Override
             public void onFailure(Call<UploadImgModel> call, Throwable t) {
+                Log.d("Network",t.getMessage());
+                listener.onFailure(t);
+
+            }
+        });
+
+    }
+    public void callAuthPin(final OnCallbackauthPinListenner listener,String pin){
+
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(API_UTIL.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        ConnectApi server = retrofit.create(ConnectApi.class);
+        //call  server
+        Call call = server.getCheckPin(pin);
+
+        call.enqueue(new Callback<AuthPinModel>() {
+
+            @Override
+            public void onResponse(Call<AuthPinModel> call, Response<AuthPinModel> response) {
+                try {
+
+                    AuthPinModel authPinModel =  response.body();
+
+                    if (response.code() != 200) {
+
+                        ResponseBody responseBody = response.errorBody();
+
+                        if (responseBody != null) {
+                            listener.onBodyError(responseBody);
+                        } else if (responseBody == null) {
+                            listener.onBodyErrorIsNull();
+                        }
+
+                    } else {
+                        listener.onResponse(authPinModel);
+                    }
+
+
+                }catch (Exception e){
+                    listener.onFailure(e);
+                    Log.d("try",e.getMessage());
+                }
+            }
+            @Override
+            public void onFailure(Call<AuthPinModel> call, Throwable t) {
                 Log.d("Network",t.getMessage());
                 listener.onFailure(t);
 

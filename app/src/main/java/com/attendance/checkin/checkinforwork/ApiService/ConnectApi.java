@@ -1,5 +1,6 @@
 package com.attendance.checkin.checkinforwork.ApiService;
 
+import com.attendance.checkin.checkinforwork.Models.AuthPinModel;
 import com.attendance.checkin.checkinforwork.Models.CheckinModel;
 import com.attendance.checkin.checkinforwork.Models.GetCheckinModel;
 import com.attendance.checkin.checkinforwork.Models.GetLeaveModel;
@@ -68,6 +69,9 @@ public interface ConnectApi {
     Call<UploadImgModel> uploadImgLeave(@Part("leave_id") String leave_id,
                                         @Part MultipartBody.Part image);
 
+    @FormUrlEncoded
+    @POST("authPin")
+    Call<AuthPinModel> getCheckPin(@Field("pin") String pin);
 
 
 }
