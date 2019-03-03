@@ -54,4 +54,6 @@
     <string name="btn_addimg">เพิ่มรูปภาพ</string>
     <string name="btn_add_img">เลือกหลักฐาน</string>
     <string name="btn_takephoto">ถ่ายรูปภาพ</string>
+    <string name="tv_lbl_name">ชื่อ : </string>
+    <string name="tv_lbl_schedule">เวร :</string>
 </resources>

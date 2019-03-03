@@ -36,4 +36,10 @@
     <color name="bootstrap_well_border_color">#E7E7E7</color>
     <color name="bootstrap_alert_cross_default">#64818a91</color>
     <color name="color_text">#fff</color>
+
+    <color name="badgeColor">#FF0000</color>
+    <color name="textColor">#FFFFFF</color>
+    <color name="borderColor">#FFFFFF</color>
+
+
 </resources>

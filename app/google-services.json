@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "559807796410",
+    "firebase_url": "https://workcheckin-7b793.firebaseio.com",
+    "project_id": "workcheckin-7b793",
+    "storage_bucket": "workcheckin-7b793.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:559807796410:android:260e4c435d58f715",
+        "android_client_info": {
+          "package_name": "com.attendance.checkin.checkinforwork"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "559807796410-80ip8net6fv4mdklfsph5tee17heg6dl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAznAHWDnJr5FkVh-d6QUvEFAxSeR-zHMU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

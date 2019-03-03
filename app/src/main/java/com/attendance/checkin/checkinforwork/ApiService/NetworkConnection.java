@@ -1,15 +1,19 @@
 package com.attendance.checkin.checkinforwork.ApiService;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.attendance.checkin.checkinforwork.Models.AuthPinModel;
 import com.attendance.checkin.checkinforwork.Models.CheckinModel;
 import com.attendance.checkin.checkinforwork.Models.GetCheckinModel;
 import com.attendance.checkin.checkinforwork.Models.GetLeaveModel;
+import com.attendance.checkin.checkinforwork.Models.GetNotifyModel;
 import com.attendance.checkin.checkinforwork.Models.LeaveModel;
 import com.attendance.checkin.checkinforwork.Models.LoginModel;
+import com.attendance.checkin.checkinforwork.Models.NotifyModel;
 import com.attendance.checkin.checkinforwork.Models.NumLeaveModel;
 import com.attendance.checkin.checkinforwork.Models.SaveProfileModel;
+import com.attendance.checkin.checkinforwork.Models.ScheduleModel;
 import com.attendance.checkin.checkinforwork.Models.UploadImgModel;
 import com.attendance.checkin.checkinforwork.Util.API_UTIL;
 import com.google.gson.Gson;
@@ -456,7 +460,9 @@ public class NetworkConnection {
         });
 
     }
+
     public void callAuthPin(final OnCallbackauthPinListenner listener,String pin){
+        System.out.println(pin);
 
         Gson gson = new GsonBuilder()
                 .setLenient()
@@ -470,6 +476,7 @@ public class NetworkConnection {
         ConnectApi server = retrofit.create(ConnectApi.class);
         //call  server
         Call call = server.getCheckPin(pin);
+
 
         call.enqueue(new Callback<AuthPinModel>() {
 
@@ -502,6 +509,169 @@ public class NetworkConnection {
             @Override
             public void onFailure(Call<AuthPinModel> call, Throwable t) {
                 Log.d("Network",t.getMessage());
+                listener.onFailure(t);
+
+            }
+        });
+
+    }
+    public void callSchedule(final OnCallbackScheduleListenner listener){
+
+
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(API_UTIL.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        ConnectApi server = retrofit.create(ConnectApi.class);
+        //call  server
+        Call call = server.getSchedule();
+
+
+        call.enqueue(new Callback<List<ScheduleModel>>() {
+
+            @Override
+            public void onResponse(Call<List<ScheduleModel>> call, Response<List<ScheduleModel>> response) {
+                try {
+
+                    List<ScheduleModel> scheduleModelList =  response.body();
+
+                    if (response.code() != 200) {
+
+                        ResponseBody responseBody = response.errorBody();
+
+                        if (responseBody != null) {
+                            listener.onBodyError(responseBody);
+                        } else if (responseBody == null) {
+                            listener.onBodyErrorIsNull();
+                        }
+
+                    } else {
+                        listener.onResponse(scheduleModelList);
+                    }
+
+
+                }catch (Exception e){
+                    listener.onFailure(e);
+                    Log.d("try",e.getMessage());
+                }
+            }
+            @Override
+            public void onFailure(Call<List<ScheduleModel>> call, Throwable t) {
+                Log.d("Network",t.getMessage());
+                listener.onFailure(t);
+
+            }
+        });
+
+    }
+
+    public void callPushNotify(final OnCallbackNotifyListener listener,String user_id_save,String user_id_for,String leave_id){
+
+
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(API_UTIL.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        ConnectApi server = retrofit.create(ConnectApi.class);
+        //call  server
+        Call call = server.getNotify(user_id_save,user_id_for,leave_id);
+
+
+        call.enqueue(new Callback<NotifyModel>() {
+
+            @Override
+            public void onResponse(Call<NotifyModel> call, Response<NotifyModel> response) {
+                try {
+
+                    NotifyModel notifyModel =  response.body();
+
+                    if (response.code() != 200) {
+
+                        ResponseBody responseBody = response.errorBody();
+
+                        if (responseBody != null) {
+                            listener.onBodyError(responseBody);
+                        } else if (responseBody == null) {
+                            listener.onBodyErrorIsNull();
+                        }
+
+                    } else {
+                        listener.onResponse(notifyModel);
+                    }
+
+
+                }catch (Exception e){
+                    listener.onFailure(e);
+                    Log.d("try",e.getMessage());
+                }
+            }
+            @Override
+            public void onFailure(Call<NotifyModel> call, Throwable t) {
+                Log.d("Network",t.getMessage());
+                listener.onFailure(t);
+
+            }
+        });
+    }
+
+    public void callGetNotify(final OnCallbackGetNotifyListener listener , String user_id){
+
+
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(API_UTIL.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        ConnectApi server = retrofit.create(ConnectApi.class);
+        //call  server
+        Call call = server.getNotifyList(user_id);
+
+
+        call.enqueue(new Callback<List<GetNotifyModel>>() {
+
+            @Override
+            public void onResponse(Call<List<GetNotifyModel>> call, Response<List<GetNotifyModel>> response) {
+                try {
+
+                    List<GetNotifyModel> scheduleModelList =  response.body();
+
+                    if (response.code() != 200) {
+
+                        ResponseBody responseBody = response.errorBody();
+
+                        if (responseBody != null) {
+                            listener.onBodyError(responseBody);
+                        } else if (responseBody == null) {
+                            listener.onBodyErrorIsNull();
+                        }
+
+                    } else {
+                        listener.onResponse(scheduleModelList);
+                    }
+
+
+                }catch (Exception e){
+                    listener.onFailure(e);
+                    Log.d("try",e.getMessage());
+                }
+            }
+            @Override
+            public void onFailure(Call<List<GetNotifyModel>> call, Throwable t) {
+
                 listener.onFailure(t);
 
             }

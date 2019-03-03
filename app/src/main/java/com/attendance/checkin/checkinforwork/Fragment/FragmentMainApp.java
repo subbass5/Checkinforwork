@@ -28,20 +28,27 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.attendance.checkin.checkinforwork.ApiService.NetworkConnection;
+import com.attendance.checkin.checkinforwork.ApiService.OnCallbackGetNotifyListener;
 import com.attendance.checkin.checkinforwork.ApiService.OnCallbackSaveProfileListerner;
 import com.attendance.checkin.checkinforwork.ApiService.OnCallbackauthPinListenner;
 import com.attendance.checkin.checkinforwork.AuthenActivity;
 import com.attendance.checkin.checkinforwork.Models.AuthPinModel;
+import com.attendance.checkin.checkinforwork.Models.GetNotifyModel;
 import com.attendance.checkin.checkinforwork.Models.SaveProfileModel;
 import com.attendance.checkin.checkinforwork.R;
 import com.attendance.checkin.checkinforwork.Util.MyFer;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import com.minibugdev.drawablebadge.BadgePosition;
+import com.minibugdev.drawablebadge.DrawableBadge;
+
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import okhttp3.ResponseBody;
 
@@ -66,6 +73,10 @@ public class FragmentMainApp extends Fragment implements View.OnClickListener{
     private String pin = "";
     private String tmp = "";
     private Dialog dialogPin;
+    private ImageView imgNotify;
+    private TextView tv_notify;
+
+
 
     @Nullable
     @Override
@@ -86,8 +97,10 @@ public class FragmentMainApp extends Fragment implements View.OnClickListener{
         v.findViewById(R.id.btn_logout).setOnClickListener(this);
         v.findViewById(R.id.btn_edit).setOnClickListener(this);
 
+
         mainLayout = v.findViewById(R.id.mainlayout);
         image_profile = v.findViewById(R.id.profile_image);
+        tv_notify = v.findViewById(R.id.tv_notify);
 
         sharedPreferences = getActivity().getSharedPreferences(MyFer.MY_FER,Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
@@ -97,6 +110,11 @@ public class FragmentMainApp extends Fragment implements View.OnClickListener{
 
         tv_name = v.findViewById(R.id.tv_name);
         tv_name.setText(" "+fname+" "+lname);
+        FirebaseMessaging.getInstance().subscribeToTopic("promotion");
+        String user_id = sharedPreferences.getString(MyFer.USER_ID,"");
+
+        showProgress();
+        new NetworkConnection().callGetNotify(notifyListener,user_id);
 
     }
 
@@ -307,6 +325,7 @@ public class FragmentMainApp extends Fragment implements View.OnClickListener{
                 tv_show.setText(pin);
             }
         });
+
         imgdel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -323,9 +342,11 @@ public class FragmentMainApp extends Fragment implements View.OnClickListener{
         btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Toast.makeText(context, "pin = "+pin, Toast.LENGTH_SHORT).show();
-                showProgress();
+//                Toast.makeText(context, "OK", Toast.LENGTH_SHORT).show();
+
                 new NetworkConnection().callAuthPin(onCallbackauthPinListenner,pin);
+                showProgress();
+
             }
         });
         btn_cancel.setOnClickListener(new View.OnClickListener() {
@@ -510,6 +531,8 @@ public class FragmentMainApp extends Fragment implements View.OnClickListener{
             if(progressDialog.isShowing()){
                 progressDialog.dismiss();
             }
+//            Toast.makeText(context, ""+authPinModel.getState(), Toast.LENGTH_SHORT).show();
+
             if (authPinModel.getState().equals("success")){
 
                 Toast.makeText(context, "ยืนยันตัวตนสำเร็จ", Toast.LENGTH_SHORT).show();
@@ -530,6 +553,49 @@ public class FragmentMainApp extends Fragment implements View.OnClickListener{
                 progressDialog.dismiss();
             }
             Log.e(TAG,""+responseBodyError.source());
+        }
+
+        @Override
+        public void onBodyErrorIsNull() {
+            if(progressDialog.isShowing()){
+                progressDialog.dismiss();
+            }
+            Log.e(TAG,"response is null");
+        }
+
+        @Override
+        public void onFailure(Throwable t) {
+            if(progressDialog.isShowing()){
+                progressDialog.dismiss();
+            }
+            t.printStackTrace();
+        }
+    };
+
+    OnCallbackGetNotifyListener notifyListener  = new OnCallbackGetNotifyListener() {
+        @Override
+        public void onResponse(List<GetNotifyModel> getNotifyModelList) {
+            Log.e(TAG,new Gson().toJson(getNotifyModelList));
+            int tmp = 0;
+            for (int i =0;i<getNotifyModelList.size();i++){
+                if(getNotifyModelList.get(i).getStateRead().equals("0")){
+                    tmp++;
+                }
+            }
+
+            tv_notify.setText(""+tmp);
+            if(progressDialog.isShowing()){
+                progressDialog.dismiss();
+            }
+//            Toast.makeText(context, "ยังไม่ได้อ่าน = "+tmp, Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onBodyError(ResponseBody responseBodyError) {
+            if(progressDialog.isShowing()){
+                progressDialog.dismiss();
+            }
+            Log.e(TAG,"response error ="+responseBodyError.source());
         }
 
         @Override
